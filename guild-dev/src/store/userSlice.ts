@@ -1,16 +1,11 @@
-import { createSlice, createAsyncThunk, PayloadAction, SerializedError } from '@reduxjs/toolkit';
-
-interface RejectedError {
-  message: string;
-}
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 interface UserState {
   users: any[];
   loading: boolean;
   error: string | null;
   currentPage: number;
-  pageSize: number; 
-
+  pageSize: number;
 }
 
 const initialState: UserState = {
@@ -18,18 +13,18 @@ const initialState: UserState = {
   loading: false,
   error: null,
   currentPage: 1,
-  pageSize: 10, 
+  pageSize: 10,
 };
 
-    export const fetchUsers = createAsyncThunk(
-      'users/fetchUsers',
-      async () => {
-        const response = await fetch('https://randomuser.me/api/?results=10');
-        const data = await response.json();
-        console.log("Данные из API:", data);
-        return data.results; 
-      }
-    );
+export const fetchUsers = createAsyncThunk(
+  'users/fetchUsers',
+  async () => {
+    const response = await fetch('http://localhost:8080/users');
+    const data = await response.json();
+    console.log("Данные из API:", data);
+    return data; 
+  }
+);
 
 export const userSlice = createSlice({
   name: 'users',
@@ -51,14 +46,7 @@ export const userSlice = createSlice({
       })
       .addCase(fetchUsers.rejected, (state, action) => {
         state.loading = false;
-        if (action.error.name === 'AxiosError') {
-          const axiosError = action.error as any; 
-          state.error = axiosError.response?.data?.message || action.error.message || 'Произошла ошибка';
-        } else {
-          const errorMessage = (action.error as Error)?.message || 'Произошла ошибка';
-          state.error = errorMessage;
-        }
-
+        state.error = action.error.message || 'Произошла ошибка при загрузке пользователей.';
       });
   },
 });

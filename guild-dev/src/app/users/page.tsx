@@ -1,8 +1,8 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-import RootLayout from "./layout";
+import RootLayout from "../layout";
 import { store } from "@/store/store";
-import UsersPage from "./users/users";
+import UsersPage from "./users";
 
 export default function Home() {
   return (

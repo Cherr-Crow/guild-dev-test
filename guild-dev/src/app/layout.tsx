@@ -14,6 +14,9 @@ interface Props {
 export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">
+      <head>
+        <title>users</title>
+      </head>
       <body className={inter.className}>
         <Provider store={store}>
           <LayoutServer>{children}</LayoutServer>
