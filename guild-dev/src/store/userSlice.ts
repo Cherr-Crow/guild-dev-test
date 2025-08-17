@@ -21,7 +21,6 @@ export const fetchUsers = createAsyncThunk(
   async () => {
     const response = await fetch('http://localhost:8080/users');
     const data = await response.json();
-    console.log("Данные из API:", data);
     return data; 
   }
 );

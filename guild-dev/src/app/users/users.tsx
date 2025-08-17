@@ -1,8 +1,8 @@
-'use client'; 
+'use client';
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers, setCurrentPage } from '@/store/userSlice';
+import { fetchUsers } from '@/store/userSlice';
 import { RootState } from '@/store/store';
 import { AppDispatch } from '@/store/store';
 import { User } from '@/types/users';
@@ -17,7 +17,6 @@ const UsersPage = () => {
   );
 
   useEffect(() => {
-    console.log("Вызываем dispatch(fetchUsers())");
     dispatch(fetchUsers());
   }, [dispatch]);
 
@@ -30,7 +29,7 @@ const UsersPage = () => {
   }
 
   if (!users || users.length === 0) {
-    return <p>No users to display.</p>; 
+    return <p>No users to display</p>;
   }
 
 
@@ -38,26 +37,23 @@ const UsersPage = () => {
   const endIndex = startIndex + pageSize;
   const displayedUsers = users.slice(startIndex, endIndex);
 
-  const totalPages = Math.ceil(users.length / pageSize);
-
-  console.log("displayedUsers:", displayedUsers);  
-
-
   return (
     <div className={styles.container}>
-      <h1>Users</h1>
+      <h1>Пользователи</h1>
       <ul className={styles.list}>
         {displayedUsers.map((user: User) => {
           const imageUrl = `https://i.pravatar.cc/150?img=${user.id}`;
-          console.log("User ID:", user.id, "Image URL:", imageUrl);
 
           return (
-            <li key={user.id}>
+            <li className={styles.item} key={user.id}>
+
+              <img className={styles.image} src={imageUrl} alt={user.name} width={60} height={60} />
+              <p className={styles.name}>{user.name}</p>
+              <p>{user.email}</p>
+
               {
                 <Link href={`/users/user/${user.id}`}>
-                  <img src={imageUrl} alt={user.name} width={50} height={50} />
-                  <p>{user.name}</p>
-                  <p>{user.email}</p>
+                  <button className={styles.button}>Подробнее</button>
                 </Link>
               }
 

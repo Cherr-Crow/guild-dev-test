@@ -3,11 +3,13 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import styles from './user.module.css';
 
 interface User {
   id: number;
   name: string;
   email: string;
+  description: string;
 }
 
 interface Params {
@@ -69,11 +71,12 @@ const UserDetailPage = ({ params }: Props) => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1>{user.name}</h1>
       <p>Email: {user.email}</p>
+      <p>{user.description}</p>
       <Link href="/users">
-         <button>Назад</button>
+         <button className={styles.button}>Назад</button>
       </Link>
     </div>
   );

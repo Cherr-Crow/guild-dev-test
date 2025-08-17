@@ -1,18 +1,42 @@
+.container {
+    padding: 20px;
+    background-color: #f0f0f0;
+}
 
-   .container {
-       padding: 20px;
-       background-color: #f0f0f0;
-   }
-
-   .listItem {
-       margin-bottom: 10px;
-       border: 1px solid #ccc;
-       padding: 10px;
-   }
-
-   .list {
+.list {
     list-style: none;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-   }
+}
+
+.item {
+    padding: 20px;
+
+    -webkit-box-shadow: 4px 4px 12px -10px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 12px -10px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 12px -10px rgba(34, 60, 80, 0.2);
+}
+
+.button {
+    all: unset;
+    padding: 10px 18px;
+    border-radius: 10px;
+    background-color: blueviolet;
+    color: white;
+}
+
+.name {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.image {
+    border-radius: 100px;
+}
+
+@media (max-width: 500px) {
+    .list {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
