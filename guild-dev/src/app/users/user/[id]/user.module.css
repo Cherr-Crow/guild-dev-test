@@ -15,3 +15,8 @@
     background-color: blueviolet;
     color: white;
 }
+
+.button:hover {
+    background-color: rgb(111, 9, 206);
+    transition: .3s;
+}
